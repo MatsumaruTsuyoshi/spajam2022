@@ -17,10 +17,17 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  flutter_launcher_icons: ^0.10.0
   flutter_lints: ^2.0.0
 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: 'assets/images/icon.png'
+  adaptive_icon_background: '#ffffff'
+  adaptive_icon_foreground: 'assets/images/icon_adaptive_foreground.png'
+
 flutter:
-
+  assets:
+    - assets/images/
   uses-material-design: true
-
