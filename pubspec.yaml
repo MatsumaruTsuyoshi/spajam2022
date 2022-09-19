@@ -18,6 +18,7 @@ dependencies:
   freezed: ^2.1.0+1
   freezed_annotation: ^2.1.0
   json_serializable: ^6.3.2
+  lottie: ^1.4.2
 
 dev_dependencies:
   flutter_test:
@@ -36,4 +37,5 @@ flutter_icons:
 flutter:
   assets:
     - assets/images/
+    - assets/lotties/
   uses-material-design: true
