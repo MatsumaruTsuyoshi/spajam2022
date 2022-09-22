@@ -22,6 +22,14 @@ dependencies:
   cloud_firestore: ^3.4.8
   firebase_storage: ^10.3.8
 
+  cached_network_image: ^3.2.1
+  smooth_page_indicator: ^1.0.0+2
+  shimmer_animation: ^2.1.0+1
+  path_provider: ^2.0.11
+  image_picker: ^0.8.5+3
+  shared_preferences: ^2.0.15
+  flutter_staggered_grid_view: ^0.6.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
