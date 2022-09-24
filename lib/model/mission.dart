@@ -8,7 +8,7 @@ part 'mission.g.dart';
 @freezed
 class Mission with _$Mission {
   factory Mission({
-    required int missionId,
+    required String missionId,
     required String missionTitle,
     required bool missionIsClear,
     required bool missionIsDone,

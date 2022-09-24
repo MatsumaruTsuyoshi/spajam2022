@@ -7,7 +7,7 @@ part of 'mission.dart';
 // **************************************************************************
 
 _$_Mission _$$_MissionFromJson(Map<String, dynamic> json) => _$_Mission(
-      missionId: json['mission_id'] as int,
+      missionId: json['mission_id'] as String,
       missionTitle: json['mission_title'] as String,
       missionIsClear: json['mission_is_clear'] as bool,
       missionIsDone: json['mission_is_done'] as bool,
