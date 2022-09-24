@@ -15,12 +15,14 @@ class MissionDetailPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-          backgroundColor: baseYellow,
-          onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) =>
-                    PostChallengePage(missionId: mission.missionId)));
-          }),
+        backgroundColor: baseYellow,
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) =>
+                  PostChallengePage(missionId: mission.missionId)));
+        },
+        child: const Icon(Icons.add, color: Colors.black),
+      ),
       body: CustomScrollView(
         slivers: [
           SliverList(
@@ -65,13 +67,12 @@ class MissionDetailPage extends ConsumerWidget {
             ),
             const SizedBox(height: 48),
           ])),
-         SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                      childCount: mission.challengePosts.length,
-                      (context, index) {
-                  return _ChallengesWidget(
-                      challengePost: mission.challengePosts[index]);
-                })),
+          SliverList(
+              delegate: SliverChildBuilderDelegate(
+                  childCount: mission.challengePosts.length, (context, index) {
+            return _ChallengesWidget(
+                challengePost: mission.challengePosts[index]);
+          })),
           SliverList(
               delegate: SliverChildListDelegate([
             const SizedBox(height: 40),
