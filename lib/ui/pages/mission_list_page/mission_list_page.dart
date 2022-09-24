@@ -5,10 +5,13 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lottie/lottie.dart';
 import 'package:spajam2022/common/colors.dart';
 import 'package:spajam2022/ui/components/complete_indicator.dart';
+import 'package:spajam2022/ui/pages/create_mission_page/create_mission_page.dart';
 import 'package:spajam2022/ui/pages/mission_list_page/misson_list_view_model.dart';
 
 class MissionListPage extends ConsumerWidget {
-  const MissionListPage({Key? key}) : super(key: key);
+  MissionListPage({required this.isChallenger});
+
+  final bool isChallenger;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,6 +22,16 @@ class MissionListPage extends ConsumerWidget {
       body: SafeArea(
         child: Column(
           children: [
+            isChallenger
+                ? const SizedBox()
+                : ElevatedButton(
+                    onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const CreateMissionPage(),
+                      ),
+                    ),
+                    child: const Text('クエスト作成'),
+                  ),
             const SizedBox(height: 65),
             CompleteIndicator(
               total: viewModel.missions.length,
