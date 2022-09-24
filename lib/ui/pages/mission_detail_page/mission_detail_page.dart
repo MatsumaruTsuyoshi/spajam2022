@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:spajam2022/common/colors.dart';
 import 'package:spajam2022/model/challenge_post.dart';
 import 'package:spajam2022/model/mission.dart';
+import 'package:spajam2022/ui/pages/mission_detail_page/post_challenge_page/post_challenge_page.dart';
 
 class MissionDetailPage extends ConsumerWidget {
   const MissionDetailPage({Key? key, required this.mission}) : super(key: key);
@@ -13,6 +14,13 @@ class MissionDetailPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+          backgroundColor: baseYellow,
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) =>
+                    PostChallengePage(missionId: mission.missionId)));
+          }),
       body: CustomScrollView(
         slivers: [
           SliverList(
