@@ -14,7 +14,7 @@ class Mission with _$Mission {
     required bool missionIsDone,
     required String missionDetail,
     required String missionImagePath,
-    List<ChallengePost>? challengePosts,
+    required List<ChallengePost> challengePosts,
   }) = _Mission;
 
   const Mission._();

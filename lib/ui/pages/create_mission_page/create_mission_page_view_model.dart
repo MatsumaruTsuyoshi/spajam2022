@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 part 'create_mission_page_view_model.freezed.dart';
 
@@ -58,6 +58,7 @@ class CreateMissionPageViewModel extends StateNotifier<CreateMissionPageState> {
         'mission_image_path': imageUrl,
         'created_at': DateTime.now(),
         'updated_at': DateTime.now(),
+        'challenge_posts': [],
       });
 
       state = currentState.copyWith(isLoading: false);

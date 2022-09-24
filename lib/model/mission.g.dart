@@ -13,8 +13,8 @@ _$_Mission _$$_MissionFromJson(Map<String, dynamic> json) => _$_Mission(
       missionIsDone: json['mission_is_done'] as bool,
       missionDetail: json['mission_detail'] as String,
       missionImagePath: json['mission_image_path'] as String,
-      challengePosts: (json['challenge_posts'] as List<dynamic>?)
-          ?.map((e) => ChallengePost.fromJson(e as Map<String, dynamic>))
+      challengePosts: (json['challenge_posts'] as List<dynamic>)
+          .map((e) => ChallengePost.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -27,5 +27,5 @@ Map<String, dynamic> _$$_MissionToJson(_$_Mission instance) =>
       'mission_detail': instance.missionDetail,
       'mission_image_path': instance.missionImagePath,
       'challenge_posts':
-          instance.challengePosts?.map((e) => e.toJson()).toList(),
+          instance.challengePosts.map((e) => e.toJson()).toList(),
     };
