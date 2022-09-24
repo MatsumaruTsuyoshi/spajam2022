@@ -44,7 +44,7 @@ class PostChallengePage extends ConsumerWidget {
                           child: Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 0, vertical: 4),
-                            child: Text('mission本文'),
+                            child: Text('チャレンジ内容'),
                           ),
                         ),
                         Padding(
