@@ -20,7 +20,7 @@ Mission _$MissionFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Mission {
-  int get missionId => throw _privateConstructorUsedError;
+  String get missionId => throw _privateConstructorUsedError;
   String get missionTitle => throw _privateConstructorUsedError;
   bool get missionIsClear => throw _privateConstructorUsedError;
   bool get missionIsDone => throw _privateConstructorUsedError;
@@ -38,7 +38,7 @@ abstract class $MissionCopyWith<$Res> {
   factory $MissionCopyWith(Mission value, $Res Function(Mission) then) =
       _$MissionCopyWithImpl<$Res>;
   $Res call(
-      {int missionId,
+      {String missionId,
       String missionTitle,
       bool missionIsClear,
       bool missionIsDone,
@@ -69,7 +69,7 @@ class _$MissionCopyWithImpl<$Res> implements $MissionCopyWith<$Res> {
       missionId: missionId == freezed
           ? _value.missionId
           : missionId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       missionTitle: missionTitle == freezed
           ? _value.missionTitle
           : missionTitle // ignore: cast_nullable_to_non_nullable
@@ -105,7 +105,7 @@ abstract class _$$_MissionCopyWith<$Res> implements $MissionCopyWith<$Res> {
       __$$_MissionCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int missionId,
+      {String missionId,
       String missionTitle,
       bool missionIsClear,
       bool missionIsDone,
@@ -137,7 +137,7 @@ class __$$_MissionCopyWithImpl<$Res> extends _$MissionCopyWithImpl<$Res>
       missionId: missionId == freezed
           ? _value.missionId
           : missionId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       missionTitle: missionTitle == freezed
           ? _value.missionTitle
           : missionTitle // ignore: cast_nullable_to_non_nullable
@@ -184,7 +184,7 @@ class _$_Mission extends _Mission {
       _$$_MissionFromJson(json);
 
   @override
-  final int missionId;
+  final String missionId;
   @override
   final String missionTitle;
   @override
@@ -256,7 +256,7 @@ class _$_Mission extends _Mission {
 
 abstract class _Mission extends Mission {
   factory _Mission(
-      {required final int missionId,
+      {required final String missionId,
       required final String missionTitle,
       required final bool missionIsClear,
       required final bool missionIsDone,
@@ -268,7 +268,7 @@ abstract class _Mission extends Mission {
   factory _Mission.fromJson(Map<String, dynamic> json) = _$_Mission.fromJson;
 
   @override
-  int get missionId;
+  String get missionId;
   @override
   String get missionTitle;
   @override
