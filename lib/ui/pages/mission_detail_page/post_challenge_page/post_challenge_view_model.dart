@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:spajam2022/model/challenge_post.dart';
 
 part 'post_challenge_view_model.freezed.dart';
 
@@ -54,8 +53,10 @@ class PostChallengeViewModel extends StateNotifier<PostChallengeState> {
           .update(<String, dynamic>{
         'updated_at': DateTime.now(),
         'challenge_posts': FieldValue.arrayUnion([
-          ChallengePost(
-              challengeDetail: challengeDetail, challengeImage: imageUrl)
+          {
+            'challenge_detail': challengeDetail,
+            'challenge_image': imageUrl,
+          }
         ])
       });
 
@@ -69,7 +70,7 @@ class PostChallengeViewModel extends StateNotifier<PostChallengeState> {
     final ref = 'missions/$missionDocId/images/challenges';
     final storageList = await storage.ref().child(ref).listAll();
     final fileLength = storageList.items.length;
-    return '$ref/${fileLength + 1}.png';
+    return '$ref/$fileLength.png';
   }
 
   Future<String?> postImage(
