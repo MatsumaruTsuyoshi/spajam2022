@@ -13,10 +13,10 @@ class MissionDetailPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
+      body: CustomScrollView(
+        slivers: [
+          SliverList(
+              delegate: SliverChildListDelegate([
             const Align(
               alignment: Alignment.centerLeft,
               child: Padding(
@@ -56,20 +56,51 @@ class MissionDetailPage extends ConsumerWidget {
               ),
             ),
             const SizedBox(height: 48),
-            mission.challengePosts == null
-                ? const SizedBox()
-                : SizedBox(
-                    height: 500,
-                    child: ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: mission.challengePosts!.length,
-                        itemBuilder: (context, index) {
-                          return _ChallengesWidget(
-                              challengePost: mission.challengePosts![index]);
-                        }),
+          ])),
+          mission.challengePosts == null
+              ? const SizedBox()
+              : SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                      childCount: mission.challengePosts!.length,
+                      (context, index) {
+                  return _ChallengesWidget(
+                      challengePost: mission.challengePosts![index]);
+                })),
+          SliverList(
+              delegate: SliverChildListDelegate([
+            const SizedBox(height: 40),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 100),
+              child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    primary: baseGreen,
+                    elevation: 0,
                   ),
-          ],
-        ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(4),
+                    child: Text(
+                      'クリア!',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  )),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 100),
+              child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    primary: baseGrey,
+                    elevation: 0,
+                  ),
+                  child: const Text(
+                    'クリアとはいえん',
+                    style: TextStyle(color: Colors.black),
+                  )),
+            ),
+            const SizedBox(height: 24),
+          ])),
+        ],
       ),
     );
   }
