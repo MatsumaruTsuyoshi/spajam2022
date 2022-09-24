@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:spajam2022/common/colors.dart';
@@ -7,9 +8,11 @@ import 'package:spajam2022/model/mission.dart';
 import 'package:spajam2022/ui/pages/mission_detail_page/post_challenge_page/post_challenge_page.dart';
 
 class MissionDetailPage extends ConsumerWidget {
-  const MissionDetailPage({Key? key, required this.mission}) : super(key: key);
+  MissionDetailPage({Key? key, required this.mission}) : super(key: key);
 
   final Mission mission;
+
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -79,7 +82,21 @@ class MissionDetailPage extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 100),
               child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    final missionsCollection = firestore.collection('missions');
+                    final data = await missionsCollection.get();
+                    final missions = data.docs
+                        .map((e) =>
+                            Mission.fromJson(e.data() as Map<String, dynamic>))
+                        .toList();
+                    final matchMission = missions.firstWhere(
+                        (element) => element.missionId == mission.missionId);
+                    await missionsCollection
+                        .doc(matchMission.missionId)
+                        .update(<String, dynamic>{
+                      'mission_is_clear': true,
+                    });
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: baseGreen,
                     elevation: 0,
@@ -95,7 +112,22 @@ class MissionDetailPage extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 100),
               child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    final missionsCollection = firestore.collection('missions');
+                    final data = await missionsCollection.get();
+                    final missions = data.docs
+                        .map((e) =>
+                            Mission.fromJson(e.data() as Map<String, dynamic>))
+                        .toList();
+                    final matchMission = missions.firstWhere(
+                        (element) => element.missionId == mission.missionId);
+                    await missionsCollection
+                        .doc(matchMission.missionId)
+                        .update(<String, dynamic>{
+                      'mission_is_clear': false,
+                      'mission_is_done': false,
+                    });
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: baseGrey,
                     elevation: 0,
@@ -148,4 +180,6 @@ class _ChallengesWidget extends StatelessWidget {
       ],
     );
   }
+
+  Future<void> clear() async {}
 }
