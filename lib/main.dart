@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:spajam2022/ui/pages/sample_page.dart';
+import 'package:spajam2022/ui/pages/home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -60,8 +60,8 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headline4,
             ),
             ElevatedButton(
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const SamplePage())),
+                onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const HomePage())),
                 child: const Text('サンプルページへ移動')),
           ],
         ),

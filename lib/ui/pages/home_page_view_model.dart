@@ -1,19 +1,19 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-part 'sample_page_view_model.freezed.dart';
+part 'home_page_view_model.freezed.dart';
 
-final samplePageViewModelProvider =
-    StateNotifierProvider.autoDispose<SamplePageViewModel, SamplePageState>(
-        (ref) => SamplePageViewModel());
+final homePageViewModelProvider =
+    StateNotifierProvider.autoDispose<HomePageViewModel, HomePageState>(
+        (ref) => HomePageViewModel());
 
 @freezed
-class SamplePageState with _$SamplePageState {
-  factory SamplePageState({@Default(0) int counter}) = _SamplePageState;
+class HomePageState with _$HomePageState {
+  factory HomePageState({@Default(0) int counter}) = _HomePageState;
 }
 
-class SamplePageViewModel extends StateNotifier<SamplePageState> {
-  SamplePageViewModel() : super(SamplePageState());
+class HomePageViewModel extends StateNotifier<HomePageState> {
+  HomePageViewModel() : super(HomePageState());
 
   void countUp() {
     final currentState = state;
