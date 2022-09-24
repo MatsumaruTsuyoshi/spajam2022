@@ -26,7 +26,7 @@ mixin _$Mission {
   bool get missionIsDone => throw _privateConstructorUsedError;
   String get missionDetail => throw _privateConstructorUsedError;
   String get missionImagePath => throw _privateConstructorUsedError;
-  List<ChallengePost>? get challengePosts => throw _privateConstructorUsedError;
+  List<ChallengePost> get challengePosts => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,7 +44,7 @@ abstract class $MissionCopyWith<$Res> {
       bool missionIsDone,
       String missionDetail,
       String missionImagePath,
-      List<ChallengePost>? challengePosts});
+      List<ChallengePost> challengePosts});
 }
 
 /// @nodoc
@@ -93,7 +93,7 @@ class _$MissionCopyWithImpl<$Res> implements $MissionCopyWith<$Res> {
       challengePosts: challengePosts == freezed
           ? _value.challengePosts
           : challengePosts // ignore: cast_nullable_to_non_nullable
-              as List<ChallengePost>?,
+              as List<ChallengePost>,
     ));
   }
 }
@@ -111,7 +111,7 @@ abstract class _$$_MissionCopyWith<$Res> implements $MissionCopyWith<$Res> {
       bool missionIsDone,
       String missionDetail,
       String missionImagePath,
-      List<ChallengePost>? challengePosts});
+      List<ChallengePost> challengePosts});
 }
 
 /// @nodoc
@@ -161,7 +161,7 @@ class __$$_MissionCopyWithImpl<$Res> extends _$MissionCopyWithImpl<$Res>
       challengePosts: challengePosts == freezed
           ? _value._challengePosts
           : challengePosts // ignore: cast_nullable_to_non_nullable
-              as List<ChallengePost>?,
+              as List<ChallengePost>,
     ));
   }
 }
@@ -176,7 +176,7 @@ class _$_Mission extends _Mission {
       required this.missionIsDone,
       required this.missionDetail,
       required this.missionImagePath,
-      final List<ChallengePost>? challengePosts})
+      required final List<ChallengePost> challengePosts})
       : _challengePosts = challengePosts,
         super._();
 
@@ -195,13 +195,11 @@ class _$_Mission extends _Mission {
   final String missionDetail;
   @override
   final String missionImagePath;
-  final List<ChallengePost>? _challengePosts;
+  final List<ChallengePost> _challengePosts;
   @override
-  List<ChallengePost>? get challengePosts {
-    final value = _challengePosts;
-    if (value == null) return null;
+  List<ChallengePost> get challengePosts {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_challengePosts);
   }
 
   @override
@@ -262,7 +260,7 @@ abstract class _Mission extends Mission {
       required final bool missionIsDone,
       required final String missionDetail,
       required final String missionImagePath,
-      final List<ChallengePost>? challengePosts}) = _$_Mission;
+      required final List<ChallengePost> challengePosts}) = _$_Mission;
   _Mission._() : super._();
 
   factory _Mission.fromJson(Map<String, dynamic> json) = _$_Mission.fromJson;
@@ -280,7 +278,7 @@ abstract class _Mission extends Mission {
   @override
   String get missionImagePath;
   @override
-  List<ChallengePost>? get challengePosts;
+  List<ChallengePost> get challengePosts;
   @override
   @JsonKey(ignore: true)
   _$$_MissionCopyWith<_$_Mission> get copyWith =>

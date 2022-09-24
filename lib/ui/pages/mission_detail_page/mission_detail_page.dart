@@ -57,14 +57,12 @@ class MissionDetailPage extends ConsumerWidget {
             ),
             const SizedBox(height: 48),
           ])),
-          mission.challengePosts == null
-              ? const SizedBox()
-              : SliverList(
+         SliverList(
                   delegate: SliverChildBuilderDelegate(
-                      childCount: mission.challengePosts!.length,
+                      childCount: mission.challengePosts.length,
                       (context, index) {
                   return _ChallengesWidget(
-                      challengePost: mission.challengePosts![index]);
+                      challengePost: mission.challengePosts[index]);
                 })),
           SliverList(
               delegate: SliverChildListDelegate([
