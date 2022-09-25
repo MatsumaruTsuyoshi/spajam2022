@@ -83,11 +83,11 @@ class PostChallengePage extends ConsumerWidget {
                           Padding(
                             padding: const EdgeInsets.all(32),
                             child: ElevatedButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 // 余裕があったらダイアログかなんかを出したい
                                 if (imageFile != null &&
                                     challengeDetailController.text != '') {
-                                  ref
+                                  await ref
                                       .read(postChallengeViewModelProvider(
                                               missionId)
                                           .notifier)
@@ -95,6 +95,7 @@ class PostChallengePage extends ConsumerWidget {
                                           imagePath: imageFile.path,
                                           challengeDetail:
                                               challengeDetailController.text);
+                                  Navigator.pop(context);
                                 }
                               },
                               style: ElevatedButton.styleFrom(

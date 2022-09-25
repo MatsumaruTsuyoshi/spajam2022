@@ -52,7 +52,7 @@ class MissionListPage extends ConsumerWidget {
                       ),
                     ),
                   ),
-            const SizedBox(height: 65),
+            const SizedBox(height: 50),
             CompleteIndicator(
               total: viewModel.missions.length,
               clearNumber: clearNumber.length,
@@ -67,6 +67,7 @@ class MissionListPage extends ConsumerWidget {
                   MaterialPageRoute(
                     builder: (context) => MissionDetailPage(
                       missionIndex: index,
+                      isChallenger: isChallenger,
                     ),
                   ),
                 ),
