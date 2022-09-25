@@ -13,12 +13,18 @@ class MissionListPage extends ConsumerWidget {
   MissionListPage({required this.isChallenger});
 
   final bool isChallenger;
+  bool isAchievementInit = false;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModel = ref.watch(missionListPageViewModelProvider);
     final clearNumber =
         viewModel.missions.where((element) => element.missionIsClear).toList();
+    bool isAchievement = false;
+    if (viewModel.missions.length == clearNumber.length) {
+      isAchievement = true;
+    }
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -54,9 +60,23 @@ class MissionListPage extends ConsumerWidget {
                     ),
                   ),
             const SizedBox(height: 30),
-            CompleteIndicator(
-              total: viewModel.missions.length,
-              clearNumber: clearNumber.length,
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                CompleteIndicator(
+                  total: viewModel.missions.length,
+                  clearNumber: clearNumber.length,
+                ),
+                !isChallenger
+                    ? const SizedBox()
+                    : !isAchievement
+                        ? const SizedBox()
+                        : SizedBox(
+                            height: 300,
+                            child: Lottie.network(
+                                'https://assets8.lottiefiles.com/packages/lf20_8edlac32.json'),
+                          ),
+              ],
             ),
             SizedBox(
                 height:
