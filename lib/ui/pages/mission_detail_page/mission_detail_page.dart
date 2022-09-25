@@ -6,16 +6,21 @@ import 'package:spajam2022/common/colors.dart';
 import 'package:spajam2022/model/challenge_post.dart';
 import 'package:spajam2022/model/mission.dart';
 import 'package:spajam2022/ui/pages/mission_detail_page/post_challenge_page/post_challenge_page.dart';
+import 'package:spajam2022/ui/pages/mission_list_page/misson_list_view_model.dart';
 
 class MissionDetailPage extends ConsumerWidget {
-  MissionDetailPage({Key? key, required this.mission}) : super(key: key);
+  MissionDetailPage({Key? key, required this.missionIndex}) : super(key: key);
 
-  final Mission mission;
+  final int missionIndex;
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final listenedMissionList =
+        ref.watch(missionListPageViewModelProvider.select((s) => s.missions));
+    final mission = listenedMissionList[missionIndex];
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: baseYellow,
@@ -180,6 +185,4 @@ class _ChallengesWidget extends StatelessWidget {
       ],
     );
   }
-
-  Future<void> clear() async {}
 }

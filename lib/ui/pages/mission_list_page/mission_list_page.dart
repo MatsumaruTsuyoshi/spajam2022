@@ -47,7 +47,7 @@ class MissionListPage extends ConsumerWidget {
                 onTap: (index) => Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => MissionDetailPage(
-                      mission: viewModel.missions[index],
+                      missionIndex: index,
                     ),
                   ),
                 ),
