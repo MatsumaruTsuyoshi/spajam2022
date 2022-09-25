@@ -127,7 +127,7 @@ class MissionDetailPage extends ConsumerWidget {
                           child: Padding(
                             padding: EdgeInsets.all(4),
                             child: Text(
-                              mission.missionIsDone ? '待ちです' : 'チャレンジ完了',
+                              mission.missionIsDone ? '待ちです' : 'チャレンジ申請',
                               style: TextStyle(color: Colors.black),
                             ),
                           )),

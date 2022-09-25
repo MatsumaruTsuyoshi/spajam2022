@@ -12,7 +12,7 @@ class CompleteIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircularPercentIndicator(
-      radius: 120.0,
+      radius: 100.0,
       lineWidth: 18.0,
       animation: true,
       percent: clearNumber / total,
