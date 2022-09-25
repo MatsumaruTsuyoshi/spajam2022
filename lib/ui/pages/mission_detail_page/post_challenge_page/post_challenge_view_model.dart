@@ -70,7 +70,7 @@ class PostChallengeViewModel extends StateNotifier<PostChallengeState> {
     final ref = 'missions/$missionDocId/images/challenges';
     final storageList = await storage.ref().child(ref).listAll();
     final fileLength = storageList.items.length;
-    return '$ref/$fileLength.png';
+    return '$ref/${fileLength - 1}.png';
   }
 
   Future<String?> postImage(
