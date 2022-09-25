@@ -12,24 +12,56 @@ class HomePage extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => MissionListPage(isChallenger: false),
+            SizedBox(height: 300, child: Image.asset('assets/images/logo.png')),
+            SizedBox(height: 40),
+            SizedBox(
+              width: 200,
+              height: 60,
+              child: OutlinedButton(
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => MissionListPage(isChallenger: false),
+                  ),
                 ),
-              ),
-              child: const Text(
-                '旅行者',
+                child: const Text(
+                  '旅行者',
+                  style: TextStyle(fontSize: 22, color: Color(0xCA1E1E48)),
+                ),
+                style: OutlinedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(30),
+                    ),
+                  ),
+                  side: BorderSide(
+                    color: Color(0xCA1E1E48), //枠線の色
+                    width: 3,
+                  ),
+                ),
               ),
             ),
-            ElevatedButton(
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => MissionListPage(isChallenger: true),
+            SizedBox(height: 20),
+            SizedBox(
+              width: 200,
+              height: 60,
+              child: ElevatedButton(
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => MissionListPage(isChallenger: true),
+                  ),
                 ),
-              ),
-              child: const Text(
-                'チャレンジャー',
+                child: const Text(
+                  'チャレンジャー',
+                  style: TextStyle(fontSize: 22),
+                ),
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(30),
+                    ),
+                  ),
+                  primary: Color(0xCA1E1E48),
+                ),
               ),
             ),
           ],
