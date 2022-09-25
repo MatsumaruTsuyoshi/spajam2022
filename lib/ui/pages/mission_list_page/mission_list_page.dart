@@ -22,12 +22,13 @@ class MissionListPage extends ConsumerWidget {
     return Scaffold(
       body: SafeArea(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             isChallenger
                 ? const SizedBox()
                 : SizedBox(
                     width: 120,
-                    height: 50,
+                    height: 30,
                     child: OutlinedButton(
                       onPressed: () => Navigator.of(context).push(
                         MaterialPageRoute(
@@ -37,7 +38,7 @@ class MissionListPage extends ConsumerWidget {
                       child: const Text(
                         'クエスト作成',
                         style:
-                            TextStyle(fontSize: 12, color: Color(0xCA1E1E48)),
+                            TextStyle(fontSize: 10, color: Color(0xCA1E1E48)),
                       ),
                       style: OutlinedButton.styleFrom(
                         shape: RoundedRectangleBorder(
@@ -52,16 +53,16 @@ class MissionListPage extends ConsumerWidget {
                       ),
                     ),
                   ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 30),
             CompleteIndicator(
               total: viewModel.missions.length,
               clearNumber: clearNumber.length,
             ),
             SizedBox(
                 height:
-                    viewModel.missions.length == clearNumber.length ? 70 : 80),
+                    viewModel.missions.length == clearNumber.length ? 30 : 40),
             SizedBox(
-              height: 360,
+              height: 300,
               child: Swiper(
                 onTap: (index) => Navigator.of(context).push(
                   MaterialPageRoute(
@@ -90,7 +91,7 @@ class MissionListPage extends ConsumerWidget {
                         child: Column(
                           children: [
                             SizedBox(
-                              height: 210,
+                              height: 150,
                               width: double.infinity,
                               child: CachedNetworkImage(
                                 fit: BoxFit.cover,
@@ -110,23 +111,41 @@ class MissionListPage extends ConsumerWidget {
                           ],
                         ),
                       ),
-                      mission.missionIsClear
-                          ? SizedBox(
-                              height: 70,
-                              child: Lottie.network(
-                                  'https://assets8.lottiefiles.com/packages/lf20_4qldwfx4.json'),
-                            )
-                          : mission.missionIsDone
+                      !isChallenger
+                          ? mission.missionIsClear
                               ? SizedBox(
-                                  width: 60,
-                                  child: Lottie.network(
-                                      'https://assets9.lottiefiles.com/private_files/lf30_dvttvgu0.json'),
-                                )
-                              : SizedBox(
                                   height: 70,
                                   child: Lottie.network(
-                                      'https://assets5.lottiefiles.com/packages/lf20_qaosdcg6.json'),
-                                ),
+                                      'https://assets8.lottiefiles.com/packages/lf20_4qldwfx4.json'),
+                                )
+                              : mission.missionIsDone
+                                  ? SizedBox(
+                                      height: 70,
+                                      child: Lottie.network(
+                                          'https://assets5.lottiefiles.com/packages/lf20_qaosdcg6.json'),
+                                    )
+                                  : SizedBox(
+                                      width: 60,
+                                      child: Lottie.network(
+                                          'https://assets9.lottiefiles.com/private_files/lf30_dvttvgu0.json'),
+                                    )
+                          : mission.missionIsClear
+                              ? SizedBox(
+                                  height: 70,
+                                  child: Lottie.network(
+                                      'https://assets8.lottiefiles.com/packages/lf20_4qldwfx4.json'),
+                                )
+                              : mission.missionIsDone
+                                  ? SizedBox(
+                                      width: 60,
+                                      child: Lottie.network(
+                                          'https://assets9.lottiefiles.com/private_files/lf30_dvttvgu0.json'),
+                                    )
+                                  : SizedBox(
+                                      height: 70,
+                                      child: Lottie.network(
+                                          'https://assets5.lottiefiles.com/packages/lf20_qaosdcg6.json'),
+                                    ),
                     ],
                   );
                 },
