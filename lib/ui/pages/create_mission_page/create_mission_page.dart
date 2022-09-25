@@ -27,110 +27,119 @@ class CreateMissionPage extends ConsumerWidget {
     final width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar: AppBar(),
       body: isError
           ? const Center(child: Text('エラー発生'))
-          : Stack(
-              alignment: Alignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        const Align(
-                          alignment: Alignment.topLeft,
-                          child: Padding(
-                              padding: EdgeInsets.only(bottom: 4),
-                              child: Text('missionタイトル')),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 16),
-                          child: TextField(
-                            controller: missionTitleController,
-                            onChanged: ref
-                                .read(missionTitleProvider.notifier)
-                                .editMissionTitle,
+          : SafeArea(
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const Align(
+                            alignment: Alignment.topLeft,
+                            child: Padding(
+                                padding: EdgeInsets.only(bottom: 4),
+                                child: Text('クエストタイトル')),
                           ),
-                        ),
-                        const Align(
-                          alignment: Alignment.topLeft,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 0, vertical: 4),
-                            child: Text('mission本文'),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 16),
+                            child: TextField(
+                              controller: missionTitleController,
+                              onChanged: ref
+                                  .read(missionTitleProvider.notifier)
+                                  .editMissionTitle,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 16),
-                          child: TextField(
-                            controller: missionDetailController,
-                            onChanged: ref
-                                .read(missionDetailProvider.notifier)
-                                .editMissionDetailText,
+                          const Align(
+                            alignment: Alignment.topLeft,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 0, vertical: 4),
+                              child: Text('クエスト本文'),
+                            ),
                           ),
-                        ),
-                        const Align(
-                          alignment: Alignment.topLeft,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 0, vertical: 8),
-                            child: Text('画像'),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 16),
+                            child: TextField(
+                              controller: missionDetailController,
+                              onChanged: ref
+                                  .read(missionDetailProvider.notifier)
+                                  .editMissionDetailText,
+                            ),
                           ),
-                        ),
-                        imageFile == null
-                            ? GestureDetector(
-                                onTap: () => ref
-                                    .read(missionImageProvider.notifier)
-                                    .pickImage(),
-                                child: Container(
-                                  height: width - 2 * 16,
-                                  decoration:
-                                      const BoxDecoration(color: Colors.grey),
+                          const Align(
+                            alignment: Alignment.topLeft,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 0, vertical: 8),
+                              child: Text('画像'),
+                            ),
+                          ),
+                          imageFile == null
+                              ? GestureDetector(
+                                  onTap: () => ref
+                                      .read(missionImageProvider.notifier)
+                                      .pickImage(),
+                                  child: Container(
+                                    height: width - 2 * 16,
+                                    decoration:
+                                        const BoxDecoration(color: Colors.grey),
+                                  ),
+                                )
+                              : Image.file(
+                                  fit: BoxFit.fill, File(imageFile.path)),
+                          Padding(
+                            padding: const EdgeInsets.all(32),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                // 余裕があったらダイアログかなんかを出したい
+                                if (imageFile != null &&
+                                    missionTitleController.text != '' &&
+                                    missionDetailController.text != '') {
+                                  ref
+                                      .read(createMissionPageViewModelProvider
+                                          .notifier)
+                                      .createMission(
+                                          imagePath: imageFile.path,
+                                          missionTitle:
+                                              missionTitleController.text,
+                                          missionDetail:
+                                              missionDetailController.text);
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(30),
+                                  ),
                                 ),
-                              )
-                            : Image.file(
-                                fit: BoxFit.fill, File(imageFile.path)),
-                        Padding(
-                          padding: const EdgeInsets.all(32),
-                          child: ElevatedButton(
-                            onPressed: () {
-                              // 余裕があったらダイアログかなんかを出したい
-                              if (imageFile != null &&
-                                  missionTitleController.text != '' &&
-                                  missionDetailController.text != '') {
-                                ref
-                                    .read(createMissionPageViewModelProvider
-                                        .notifier)
-                                    .createMission(
-                                        imagePath: imageFile.path,
-                                        missionTitle:
-                                            missionTitleController.text,
-                                        missionDetail:
-                                            missionDetailController.text);
-                              }
-                            },
-                            child: const Text('missionを投稿する'),
+                                primary: Color(0xCA1E1E48),
+                              ),
+                              child: const Text('クエストを投稿する'),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                isLoading
-                    ? Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.24)),
-                      )
-                    : const SizedBox(),
-                isLoading
-                    ? const Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : const SizedBox(),
-              ],
+                  isLoading
+                      ? Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.24)),
+                        )
+                      : const SizedBox(),
+                  isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : const SizedBox(),
+                ],
+              ),
             ),
     );
   }

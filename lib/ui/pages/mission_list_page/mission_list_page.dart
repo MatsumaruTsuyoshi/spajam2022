@@ -25,13 +25,32 @@ class MissionListPage extends ConsumerWidget {
           children: [
             isChallenger
                 ? const SizedBox()
-                : ElevatedButton(
-                    onPressed: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const CreateMissionPage(),
+                : SizedBox(
+                    width: 120,
+                    height: 50,
+                    child: OutlinedButton(
+                      onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const CreateMissionPage(),
+                        ),
+                      ),
+                      child: const Text(
+                        'クエスト作成',
+                        style:
+                            TextStyle(fontSize: 12, color: Color(0xCA1E1E48)),
+                      ),
+                      style: OutlinedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(30),
+                          ),
+                        ),
+                        side: BorderSide(
+                          color: Color(0xCA1E1E48), //枠線の色
+                          width: 3,
+                        ),
                       ),
                     ),
-                    child: const Text('クエスト作成'),
                   ),
             const SizedBox(height: 65),
             CompleteIndicator(
